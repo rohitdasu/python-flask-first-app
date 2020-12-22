@@ -7,6 +7,7 @@ auth_api = Blueprint("auth_api", __name__)
 def auth():
     return "This is Auth API"
 
+
 @auth_api.route('/signin', methods=['GET', 'POST'])
 def signin():
 
@@ -21,4 +22,4 @@ def signin():
             "password": password
         }
 
-        return data;
+        return data, 200 # it sends the status code 200
