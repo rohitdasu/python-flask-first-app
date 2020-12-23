@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from auth.auth import auth_api
 from secure.secure import secure_api
+from database.db import db
 # from flask_restful import Resource, Api
 
 
@@ -28,3 +29,10 @@ app.register_blueprint(secure_api, url_prefix="/secure")
 def index():
     return jsonify("Hello World, This is the root!"), 200
 
+@app.route('/add-data')
+def add():
+    try:
+        db.test.insert_one({"name": "John"})
+    except:
+        return jsonify('Something Went Wrong'), 400
+    return jsonify('Data Inserted'), 201
