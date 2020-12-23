@@ -34,6 +34,7 @@ app.register_blueprint(file_api, url_prefix="/upload")
 def index():
     return jsonify("Hello World, This is the root api!"), 200
 
+
 @app.route('/add-data')
 def add():
     try:

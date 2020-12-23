@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, abort
 
 auth_api = Blueprint("auth_api", __name__)
 
+
 @auth_api.route('/')
 def auth():
     return jsonify("This is Auth API")
