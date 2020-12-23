@@ -32,7 +32,7 @@ def index():
 @app.route('/add-data')
 def add():
     try:
-        db.test.insert_one({"name": "John"})
+        db.test.insert_one({"name": "John"}) # here "test" is the collection name
     except:
         return jsonify('Something Went Wrong'), 400
     return jsonify('Data Inserted'), 201
