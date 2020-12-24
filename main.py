@@ -13,8 +13,8 @@ CORS(app)
 # api = Api(app)
 
 
-''' 
-<--This api is created using flask_restful package-->
+'''
+<----This api is created using flask_restful package--->
 
 class HelloWorld(Resource):
 
