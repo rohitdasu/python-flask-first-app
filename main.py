@@ -23,7 +23,6 @@ api.add_resource(HelloWorld, '/hello_world')
 
 --End '''
 
-
 app.register_blueprint(auth_api, url_prefix="/auth")
 app.register_blueprint(secure_api, url_prefix="/secure")
 app.register_blueprint(file_api, url_prefix="/upload")
@@ -38,7 +37,7 @@ def index():
 @app.route('/add-data')
 def add():
     try:
-        db.test.insert_one({"name": "John"}) # here "test" is the collection name
+        db.test.insert_one({"name": "John"})  # here "test" is the collection name
     except:
         return jsonify('Something Went Wrong'), 400
-    return jsonify('Data Inserted'), 201
+    return jsonify('Data Inserted'), 200

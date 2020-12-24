@@ -5,7 +5,7 @@ from flask import Blueprint, jsonify, request
 
 current_directory = os.getcwd()
 
-UPLOAD_FOLDER = current_directory + '/assets/images'
+UPLOAD_FOLDER = current_directory + '/static/assets/images'
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -23,6 +23,7 @@ def allowed_file(filename):
 
 @file_api.route('/', methods=['POST'])
 def upload_file():
+
     if 'file' not in request.files:
         resp = jsonify({'message': 'No file part in the request'})
         resp.status_code = 400
@@ -35,7 +36,7 @@ def upload_file():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        resp = jsonify({'message': 'File successfully uploaded'})
+        resp = jsonify({'message': 'File successfully uploaded', 'img_url': request.host_url+'/static/assets/images/' + filename})
         resp.status_code = 201
         return resp
     else:
