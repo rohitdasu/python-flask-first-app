@@ -1,18 +1,20 @@
 from flask import Flask, jsonify
-
 from auth.auth import auth_api
 from secure.secure import secure_api
 from file_upload.file import file_api
 from database_configuration.db import db
+from flask_cors import CORS
 
 # from flask_restful import Resource, Api
 
 
 app = Flask(__name__)
+CORS(app)
 # api = Api(app)
 
 
-''' This api is created using flask_restful package--
+''' 
+<--This api is created using flask_restful package-->
 
 class HelloWorld(Resource):
 
@@ -21,8 +23,10 @@ class HelloWorld(Resource):
 
 api.add_resource(HelloWorld, '/hello_world')
 
---End '''
+<--------------------End----------------------------->
+'''
 
+# added blueprints for modularizing the app
 app.register_blueprint(auth_api, url_prefix="/auth")
 app.register_blueprint(secure_api, url_prefix="/secure")
 app.register_blueprint(file_api, url_prefix="/upload")
@@ -34,6 +38,7 @@ def index():
     return jsonify("Hello World, This is the root api!"), 200
 
 
+# dummy database operation
 @app.route('/add-data')
 def add():
     try:
